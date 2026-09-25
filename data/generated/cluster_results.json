@@ -1,0 +1,1640 @@
+[
+  {
+    "cluster_id": "CLUSTER_001",
+    "account_ids": [
+      "A001",
+      "A002"
+    ],
+    "shared_devices": [],
+    "shared_ips": [
+      "IP01"
+    ],
+    "shared_beneficiaries": [],
+    "relationship_types": [
+      "shared_ip"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A001",
+        "account_b": "A002",
+        "time_diff_minutes": 15.0
+      }
+    ],
+    "behavioral_overlap": [],
+    "Ndev": 0,
+    "Nben": 0,
+    "Nip": 1,
+    "Ntemp": 1,
+    "Nbeh": 0,
+    "Trel": 1,
+    "Nitems": 2,
+    "support_factor": 0.5,
+    "base_risk": 0.0,
+    "diversity_bonus": 0.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 0.0,
+    "network_raw": 15.0,
+    "network_contribution": 15.0,
+    "cluster_risk": 15.0,
+    "severity": "LOW",
+    "confidence": 0.3983,
+    "evidence": [
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A001",
+          "A002"
+        ],
+        "shared_values": [
+          "IP01"
+        ],
+        "description": "Accounts A001, A002 share IP address IP01."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A001",
+          "A002"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 1 connected account pair(s) transacting within 30 minutes."
+      }
+    ]
+  },
+  {
+    "cluster_id": "CLUSTER_002",
+    "account_ids": [
+      "A003",
+      "A004"
+    ],
+    "shared_devices": [],
+    "shared_ips": [
+      "IP02"
+    ],
+    "shared_beneficiaries": [],
+    "relationship_types": [
+      "shared_ip"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A003",
+        "account_b": "A004",
+        "time_diff_minutes": 25.0
+      }
+    ],
+    "behavioral_overlap": [],
+    "Ndev": 0,
+    "Nben": 0,
+    "Nip": 1,
+    "Ntemp": 1,
+    "Nbeh": 0,
+    "Trel": 1,
+    "Nitems": 2,
+    "support_factor": 0.5,
+    "base_risk": 0.0,
+    "diversity_bonus": 0.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 0.0,
+    "network_raw": 15.0,
+    "network_contribution": 15.0,
+    "cluster_risk": 15.0,
+    "severity": "LOW",
+    "confidence": 0.3983,
+    "evidence": [
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A003",
+          "A004"
+        ],
+        "shared_values": [
+          "IP02"
+        ],
+        "description": "Accounts A003, A004 share IP address IP02."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A003",
+          "A004"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 1 connected account pair(s) transacting within 30 minutes."
+      }
+    ]
+  },
+  {
+    "cluster_id": "CLUSTER_003",
+    "account_ids": [
+      "A005",
+      "A006"
+    ],
+    "shared_devices": [],
+    "shared_ips": [
+      "IP03"
+    ],
+    "shared_beneficiaries": [],
+    "relationship_types": [
+      "shared_ip"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A005",
+        "account_b": "A006",
+        "time_diff_minutes": 25.0
+      }
+    ],
+    "behavioral_overlap": [],
+    "Ndev": 0,
+    "Nben": 0,
+    "Nip": 1,
+    "Ntemp": 1,
+    "Nbeh": 0,
+    "Trel": 1,
+    "Nitems": 2,
+    "support_factor": 0.5,
+    "base_risk": 0.0,
+    "diversity_bonus": 0.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 0.0,
+    "network_raw": 15.0,
+    "network_contribution": 15.0,
+    "cluster_risk": 15.0,
+    "severity": "LOW",
+    "confidence": 0.3983,
+    "evidence": [
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A005",
+          "A006"
+        ],
+        "shared_values": [
+          "IP03"
+        ],
+        "description": "Accounts A005, A006 share IP address IP03."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A005",
+          "A006"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 1 connected account pair(s) transacting within 30 minutes."
+      }
+    ]
+  },
+  {
+    "cluster_id": "CLUSTER_004",
+    "account_ids": [
+      "A007",
+      "A008"
+    ],
+    "shared_devices": [],
+    "shared_ips": [
+      "IP04"
+    ],
+    "shared_beneficiaries": [],
+    "relationship_types": [
+      "shared_ip"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A007",
+        "account_b": "A008",
+        "time_diff_minutes": 15.0
+      }
+    ],
+    "behavioral_overlap": [],
+    "Ndev": 0,
+    "Nben": 0,
+    "Nip": 1,
+    "Ntemp": 1,
+    "Nbeh": 0,
+    "Trel": 1,
+    "Nitems": 2,
+    "support_factor": 0.5,
+    "base_risk": 0.0,
+    "diversity_bonus": 0.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 0.0,
+    "network_raw": 15.0,
+    "network_contribution": 15.0,
+    "cluster_risk": 15.0,
+    "severity": "LOW",
+    "confidence": 0.3983,
+    "evidence": [
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A007",
+          "A008"
+        ],
+        "shared_values": [
+          "IP04"
+        ],
+        "description": "Accounts A007, A008 share IP address IP04."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A007",
+          "A008"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 1 connected account pair(s) transacting within 30 minutes."
+      }
+    ]
+  },
+  {
+    "cluster_id": "CLUSTER_005",
+    "account_ids": [
+      "A009",
+      "A010"
+    ],
+    "shared_devices": [],
+    "shared_ips": [
+      "IP05"
+    ],
+    "shared_beneficiaries": [],
+    "relationship_types": [
+      "shared_ip"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A009",
+        "account_b": "A010",
+        "time_diff_minutes": 15.0
+      }
+    ],
+    "behavioral_overlap": [],
+    "Ndev": 0,
+    "Nben": 0,
+    "Nip": 1,
+    "Ntemp": 1,
+    "Nbeh": 0,
+    "Trel": 1,
+    "Nitems": 2,
+    "support_factor": 0.5,
+    "base_risk": 0.0,
+    "diversity_bonus": 0.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 0.0,
+    "network_raw": 15.0,
+    "network_contribution": 15.0,
+    "cluster_risk": 15.0,
+    "severity": "LOW",
+    "confidence": 0.3983,
+    "evidence": [
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A009",
+          "A010"
+        ],
+        "shared_values": [
+          "IP05"
+        ],
+        "description": "Accounts A009, A010 share IP address IP05."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A009",
+          "A010"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 1 connected account pair(s) transacting within 30 minutes."
+      }
+    ]
+  },
+  {
+    "cluster_id": "CLUSTER_006",
+    "account_ids": [
+      "A101",
+      "A102",
+      "A103",
+      "A104",
+      "A105",
+      "A106",
+      "A107",
+      "A108",
+      "A109",
+      "A110"
+    ],
+    "shared_devices": [
+      "D20",
+      "D21",
+      "D22",
+      "D23"
+    ],
+    "shared_ips": [
+      "IP20",
+      "IP21",
+      "IP22",
+      "IP23"
+    ],
+    "shared_beneficiaries": [
+      "B900",
+      "B901"
+    ],
+    "relationship_types": [
+      "shared_device",
+      "shared_ip",
+      "shared_beneficiary"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A101",
+        "account_b": "A102",
+        "time_diff_minutes": 7.0
+      },
+      {
+        "account_a": "A101",
+        "account_b": "A103",
+        "time_diff_minutes": 15.0
+      },
+      {
+        "account_a": "A101",
+        "account_b": "A104",
+        "time_diff_minutes": 30.0
+      },
+      {
+        "account_a": "A102",
+        "account_b": "A103",
+        "time_diff_minutes": 8.0
+      },
+      {
+        "account_a": "A102",
+        "account_b": "A104",
+        "time_diff_minutes": 23.0
+      },
+      {
+        "account_a": "A102",
+        "account_b": "A105",
+        "time_diff_minutes": 30.0
+      },
+      {
+        "account_a": "A103",
+        "account_b": "A106",
+        "time_diff_minutes": 30.0
+      },
+      {
+        "account_a": "A104",
+        "account_b": "A105",
+        "time_diff_minutes": 7.0
+      },
+      {
+        "account_a": "A104",
+        "account_b": "A106",
+        "time_diff_minutes": 15.0
+      },
+      {
+        "account_a": "A104",
+        "account_b": "A107",
+        "time_diff_minutes": 30.0
+      },
+      {
+        "account_a": "A105",
+        "account_b": "A106",
+        "time_diff_minutes": 8.0
+      },
+      {
+        "account_a": "A105",
+        "account_b": "A107",
+        "time_diff_minutes": 23.0
+      },
+      {
+        "account_a": "A106",
+        "account_b": "A108",
+        "time_diff_minutes": 22.0
+      },
+      {
+        "account_a": "A107",
+        "account_b": "A108",
+        "time_diff_minutes": 7.0
+      },
+      {
+        "account_a": "A107",
+        "account_b": "A109",
+        "time_diff_minutes": 15.0
+      },
+      {
+        "account_a": "A108",
+        "account_b": "A110",
+        "time_diff_minutes": 16.0
+      },
+      {
+        "account_a": "A109",
+        "account_b": "A110",
+        "time_diff_minutes": 8.0
+      }
+    ],
+    "behavioral_overlap": [
+      "high_amount",
+      "high_frequency",
+      "rapid_transactions",
+      "suspicious_beneficiary"
+    ],
+    "Ndev": 4,
+    "Nben": 2,
+    "Nip": 4,
+    "Ntemp": 17,
+    "Nbeh": 4,
+    "Trel": 3,
+    "Nitems": 15,
+    "support_factor": 1.0,
+    "base_risk": 105.0,
+    "diversity_bonus": 30.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 15.0,
+    "network_raw": 205.0,
+    "network_contribution": 50.0,
+    "cluster_risk": 100.0,
+    "severity": "HIGH",
+    "confidence": 1.0,
+    "evidence": [
+      {
+        "type": "shared_device",
+        "accounts": [
+          "A101",
+          "A102",
+          "A103"
+        ],
+        "shared_values": [
+          "D20"
+        ],
+        "description": "Accounts A101, A102, A103 share device D20."
+      },
+      {
+        "type": "shared_device",
+        "accounts": [
+          "A104",
+          "A105",
+          "A106"
+        ],
+        "shared_values": [
+          "D21"
+        ],
+        "description": "Accounts A104, A105, A106 share device D21."
+      },
+      {
+        "type": "shared_device",
+        "accounts": [
+          "A107",
+          "A108"
+        ],
+        "shared_values": [
+          "D22"
+        ],
+        "description": "Accounts A107, A108 share device D22."
+      },
+      {
+        "type": "shared_device",
+        "accounts": [
+          "A109",
+          "A110"
+        ],
+        "shared_values": [
+          "D23"
+        ],
+        "description": "Accounts A109, A110 share device D23."
+      },
+      {
+        "type": "shared_beneficiary",
+        "accounts": [
+          "A101",
+          "A102",
+          "A104",
+          "A105",
+          "A107",
+          "A109"
+        ],
+        "shared_values": [
+          "B900"
+        ],
+        "description": "Accounts A101, A102, A104, A105, A107, A109 share beneficiary B900."
+      },
+      {
+        "type": "shared_beneficiary",
+        "accounts": [
+          "A103",
+          "A106",
+          "A108",
+          "A110"
+        ],
+        "shared_values": [
+          "B901"
+        ],
+        "description": "Accounts A103, A106, A108, A110 share beneficiary B901."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A101",
+          "A102",
+          "A103"
+        ],
+        "shared_values": [
+          "IP20"
+        ],
+        "description": "Accounts A101, A102, A103 share IP address IP20."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A104",
+          "A105",
+          "A106"
+        ],
+        "shared_values": [
+          "IP21"
+        ],
+        "description": "Accounts A104, A105, A106 share IP address IP21."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A107",
+          "A108"
+        ],
+        "shared_values": [
+          "IP22"
+        ],
+        "description": "Accounts A107, A108 share IP address IP22."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A109",
+          "A110"
+        ],
+        "shared_values": [
+          "IP23"
+        ],
+        "description": "Accounts A109, A110 share IP address IP23."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A101",
+          "A102",
+          "A103",
+          "A104",
+          "A105",
+          "A106",
+          "A107",
+          "A108",
+          "A109",
+          "A110"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 17 connected account pair(s) transacting within 30 minutes."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A101",
+          "A102",
+          "A103",
+          "A104",
+          "A105",
+          "A106",
+          "A107",
+          "A108",
+          "A109",
+          "A110"
+        ],
+        "shared_values": [
+          "high_amount"
+        ],
+        "description": "Suspicious behavior tag 'high_amount' shared across 10 accounts."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A101",
+          "A102",
+          "A103",
+          "A107",
+          "A108"
+        ],
+        "shared_values": [
+          "high_frequency"
+        ],
+        "description": "Suspicious behavior tag 'high_frequency' shared across 5 accounts."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A104",
+          "A105",
+          "A106",
+          "A109",
+          "A110"
+        ],
+        "shared_values": [
+          "rapid_transactions"
+        ],
+        "description": "Suspicious behavior tag 'rapid_transactions' shared across 5 accounts."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A101",
+          "A102",
+          "A103",
+          "A104",
+          "A105",
+          "A106",
+          "A107",
+          "A108",
+          "A109",
+          "A110"
+        ],
+        "shared_values": [
+          "suspicious_beneficiary"
+        ],
+        "description": "Suspicious behavior tag 'suspicious_beneficiary' shared across 10 accounts."
+      }
+    ]
+  },
+  {
+    "cluster_id": "CLUSTER_007",
+    "account_ids": [
+      "A201",
+      "A202",
+      "A203",
+      "A204",
+      "A205",
+      "A206",
+      "A207",
+      "A208",
+      "A209",
+      "A210"
+    ],
+    "shared_devices": [
+      "D30",
+      "D31",
+      "D32",
+      "D33"
+    ],
+    "shared_ips": [
+      "IP30",
+      "IP31",
+      "IP32",
+      "IP33"
+    ],
+    "shared_beneficiaries": [
+      "B950",
+      "B951"
+    ],
+    "relationship_types": [
+      "shared_device",
+      "shared_ip",
+      "shared_beneficiary"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A201",
+        "account_b": "A202",
+        "time_diff_minutes": 7.0
+      },
+      {
+        "account_a": "A201",
+        "account_b": "A203",
+        "time_diff_minutes": 15.0
+      },
+      {
+        "account_a": "A201",
+        "account_b": "A204",
+        "time_diff_minutes": 30.0
+      },
+      {
+        "account_a": "A202",
+        "account_b": "A203",
+        "time_diff_minutes": 8.0
+      },
+      {
+        "account_a": "A202",
+        "account_b": "A204",
+        "time_diff_minutes": 23.0
+      },
+      {
+        "account_a": "A202",
+        "account_b": "A205",
+        "time_diff_minutes": 30.0
+      },
+      {
+        "account_a": "A203",
+        "account_b": "A206",
+        "time_diff_minutes": 30.0
+      },
+      {
+        "account_a": "A204",
+        "account_b": "A205",
+        "time_diff_minutes": 7.0
+      },
+      {
+        "account_a": "A204",
+        "account_b": "A206",
+        "time_diff_minutes": 15.0
+      },
+      {
+        "account_a": "A204",
+        "account_b": "A207",
+        "time_diff_minutes": 30.0
+      },
+      {
+        "account_a": "A205",
+        "account_b": "A206",
+        "time_diff_minutes": 8.0
+      },
+      {
+        "account_a": "A205",
+        "account_b": "A207",
+        "time_diff_minutes": 23.0
+      },
+      {
+        "account_a": "A206",
+        "account_b": "A208",
+        "time_diff_minutes": 22.0
+      },
+      {
+        "account_a": "A207",
+        "account_b": "A208",
+        "time_diff_minutes": 7.0
+      },
+      {
+        "account_a": "A207",
+        "account_b": "A209",
+        "time_diff_minutes": 15.0
+      },
+      {
+        "account_a": "A208",
+        "account_b": "A210",
+        "time_diff_minutes": 16.0
+      },
+      {
+        "account_a": "A209",
+        "account_b": "A210",
+        "time_diff_minutes": 8.0
+      }
+    ],
+    "behavioral_overlap": [
+      "high_amount",
+      "high_frequency",
+      "rapid_transactions",
+      "suspicious_beneficiary"
+    ],
+    "Ndev": 4,
+    "Nben": 2,
+    "Nip": 4,
+    "Ntemp": 17,
+    "Nbeh": 4,
+    "Trel": 3,
+    "Nitems": 15,
+    "support_factor": 1.0,
+    "base_risk": 105.0,
+    "diversity_bonus": 30.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 15.0,
+    "network_raw": 205.0,
+    "network_contribution": 50.0,
+    "cluster_risk": 100.0,
+    "severity": "HIGH",
+    "confidence": 1.0,
+    "evidence": [
+      {
+        "type": "shared_device",
+        "accounts": [
+          "A201",
+          "A202",
+          "A203"
+        ],
+        "shared_values": [
+          "D30"
+        ],
+        "description": "Accounts A201, A202, A203 share device D30."
+      },
+      {
+        "type": "shared_device",
+        "accounts": [
+          "A204",
+          "A205",
+          "A206"
+        ],
+        "shared_values": [
+          "D31"
+        ],
+        "description": "Accounts A204, A205, A206 share device D31."
+      },
+      {
+        "type": "shared_device",
+        "accounts": [
+          "A207",
+          "A208"
+        ],
+        "shared_values": [
+          "D32"
+        ],
+        "description": "Accounts A207, A208 share device D32."
+      },
+      {
+        "type": "shared_device",
+        "accounts": [
+          "A209",
+          "A210"
+        ],
+        "shared_values": [
+          "D33"
+        ],
+        "description": "Accounts A209, A210 share device D33."
+      },
+      {
+        "type": "shared_beneficiary",
+        "accounts": [
+          "A201",
+          "A202",
+          "A204",
+          "A205",
+          "A207",
+          "A209"
+        ],
+        "shared_values": [
+          "B950"
+        ],
+        "description": "Accounts A201, A202, A204, A205, A207, A209 share beneficiary B950."
+      },
+      {
+        "type": "shared_beneficiary",
+        "accounts": [
+          "A203",
+          "A206",
+          "A208",
+          "A210"
+        ],
+        "shared_values": [
+          "B951"
+        ],
+        "description": "Accounts A203, A206, A208, A210 share beneficiary B951."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A201",
+          "A202",
+          "A203"
+        ],
+        "shared_values": [
+          "IP30"
+        ],
+        "description": "Accounts A201, A202, A203 share IP address IP30."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A204",
+          "A205",
+          "A206"
+        ],
+        "shared_values": [
+          "IP31"
+        ],
+        "description": "Accounts A204, A205, A206 share IP address IP31."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A207",
+          "A208"
+        ],
+        "shared_values": [
+          "IP32"
+        ],
+        "description": "Accounts A207, A208 share IP address IP32."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A209",
+          "A210"
+        ],
+        "shared_values": [
+          "IP33"
+        ],
+        "description": "Accounts A209, A210 share IP address IP33."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A201",
+          "A202",
+          "A203",
+          "A204",
+          "A205",
+          "A206",
+          "A207",
+          "A208",
+          "A209",
+          "A210"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 17 connected account pair(s) transacting within 30 minutes."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A201",
+          "A202",
+          "A203",
+          "A204",
+          "A205",
+          "A206",
+          "A207",
+          "A208",
+          "A209",
+          "A210"
+        ],
+        "shared_values": [
+          "high_amount"
+        ],
+        "description": "Suspicious behavior tag 'high_amount' shared across 10 accounts."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A201",
+          "A202",
+          "A203",
+          "A207",
+          "A208"
+        ],
+        "shared_values": [
+          "high_frequency"
+        ],
+        "description": "Suspicious behavior tag 'high_frequency' shared across 5 accounts."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A204",
+          "A205",
+          "A206",
+          "A209",
+          "A210"
+        ],
+        "shared_values": [
+          "rapid_transactions"
+        ],
+        "description": "Suspicious behavior tag 'rapid_transactions' shared across 5 accounts."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A201",
+          "A202",
+          "A203",
+          "A204",
+          "A205",
+          "A206",
+          "A207",
+          "A208",
+          "A209",
+          "A210"
+        ],
+        "shared_values": [
+          "suspicious_beneficiary"
+        ],
+        "description": "Suspicious behavior tag 'suspicious_beneficiary' shared across 10 accounts."
+      }
+    ]
+  },
+  {
+    "cluster_id": "CLUSTER_008",
+    "account_ids": [
+      "A301",
+      "A302"
+    ],
+    "shared_devices": [],
+    "shared_ips": [
+      "IP40"
+    ],
+    "shared_beneficiaries": [],
+    "relationship_types": [
+      "shared_ip"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A301",
+        "account_b": "A302",
+        "time_diff_minutes": 10.0
+      }
+    ],
+    "behavioral_overlap": [
+      "high_amount"
+    ],
+    "Ndev": 0,
+    "Nben": 0,
+    "Nip": 1,
+    "Ntemp": 1,
+    "Nbeh": 1,
+    "Trel": 1,
+    "Nitems": 3,
+    "support_factor": 1.0,
+    "base_risk": 37.0,
+    "diversity_bonus": 0.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 5.0,
+    "network_raw": 20.0,
+    "network_contribution": 15.0,
+    "cluster_risk": 52.0,
+    "severity": "MEDIUM",
+    "confidence": 0.5933,
+    "evidence": [
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A301",
+          "A302"
+        ],
+        "shared_values": [
+          "IP40"
+        ],
+        "description": "Accounts A301, A302 share IP address IP40."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A301",
+          "A302"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 1 connected account pair(s) transacting within 30 minutes."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A301",
+          "A302"
+        ],
+        "shared_values": [
+          "high_amount"
+        ],
+        "description": "Suspicious behavior tag 'high_amount' shared across 2 accounts."
+      }
+    ]
+  },
+  {
+    "cluster_id": "CLUSTER_009",
+    "account_ids": [
+      "A303",
+      "A304"
+    ],
+    "shared_devices": [],
+    "shared_ips": [
+      "IP41"
+    ],
+    "shared_beneficiaries": [],
+    "relationship_types": [
+      "shared_ip"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A303",
+        "account_b": "A304",
+        "time_diff_minutes": 10.0
+      }
+    ],
+    "behavioral_overlap": [],
+    "Ndev": 0,
+    "Nben": 0,
+    "Nip": 1,
+    "Ntemp": 1,
+    "Nbeh": 0,
+    "Trel": 1,
+    "Nitems": 2,
+    "support_factor": 0.5,
+    "base_risk": 23.0,
+    "diversity_bonus": 0.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 0.0,
+    "network_raw": 15.0,
+    "network_contribution": 15.0,
+    "cluster_risk": 38.0,
+    "severity": "MEDIUM",
+    "confidence": 0.3983,
+    "evidence": [
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A303",
+          "A304"
+        ],
+        "shared_values": [
+          "IP41"
+        ],
+        "description": "Accounts A303, A304 share IP address IP41."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A303",
+          "A304"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 1 connected account pair(s) transacting within 30 minutes."
+      }
+    ]
+  },
+  {
+    "cluster_id": "CLUSTER_010",
+    "account_ids": [
+      "A305",
+      "A306"
+    ],
+    "shared_devices": [],
+    "shared_ips": [
+      "IP42"
+    ],
+    "shared_beneficiaries": [],
+    "relationship_types": [
+      "shared_ip"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A305",
+        "account_b": "A306",
+        "time_diff_minutes": 10.0
+      }
+    ],
+    "behavioral_overlap": [],
+    "Ndev": 0,
+    "Nben": 0,
+    "Nip": 1,
+    "Ntemp": 1,
+    "Nbeh": 0,
+    "Trel": 1,
+    "Nitems": 2,
+    "support_factor": 0.5,
+    "base_risk": 23.0,
+    "diversity_bonus": 0.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 0.0,
+    "network_raw": 15.0,
+    "network_contribution": 15.0,
+    "cluster_risk": 38.0,
+    "severity": "MEDIUM",
+    "confidence": 0.3983,
+    "evidence": [
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A305",
+          "A306"
+        ],
+        "shared_values": [
+          "IP42"
+        ],
+        "description": "Accounts A305, A306 share IP address IP42."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A305",
+          "A306"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 1 connected account pair(s) transacting within 30 minutes."
+      }
+    ]
+  },
+  {
+    "cluster_id": "CLUSTER_011",
+    "account_ids": [
+      "A307",
+      "A308"
+    ],
+    "shared_devices": [],
+    "shared_ips": [
+      "IP43"
+    ],
+    "shared_beneficiaries": [],
+    "relationship_types": [
+      "shared_ip"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A307",
+        "account_b": "A308",
+        "time_diff_minutes": 10.0
+      }
+    ],
+    "behavioral_overlap": [],
+    "Ndev": 0,
+    "Nben": 0,
+    "Nip": 1,
+    "Ntemp": 1,
+    "Nbeh": 0,
+    "Trel": 1,
+    "Nitems": 2,
+    "support_factor": 0.5,
+    "base_risk": 23.0,
+    "diversity_bonus": 0.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 0.0,
+    "network_raw": 15.0,
+    "network_contribution": 15.0,
+    "cluster_risk": 38.0,
+    "severity": "MEDIUM",
+    "confidence": 0.3983,
+    "evidence": [
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A307",
+          "A308"
+        ],
+        "shared_values": [
+          "IP43"
+        ],
+        "description": "Accounts A307, A308 share IP address IP43."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A307",
+          "A308"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 1 connected account pair(s) transacting within 30 minutes."
+      }
+    ]
+  },
+  {
+    "cluster_id": "CLUSTER_012",
+    "account_ids": [
+      "A309",
+      "A310"
+    ],
+    "shared_devices": [],
+    "shared_ips": [
+      "IP44"
+    ],
+    "shared_beneficiaries": [],
+    "relationship_types": [
+      "shared_ip"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A309",
+        "account_b": "A310",
+        "time_diff_minutes": 10.0
+      }
+    ],
+    "behavioral_overlap": [
+      "high_amount"
+    ],
+    "Ndev": 0,
+    "Nben": 0,
+    "Nip": 1,
+    "Ntemp": 1,
+    "Nbeh": 1,
+    "Trel": 1,
+    "Nitems": 3,
+    "support_factor": 1.0,
+    "base_risk": 37.0,
+    "diversity_bonus": 0.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 5.0,
+    "network_raw": 20.0,
+    "network_contribution": 15.0,
+    "cluster_risk": 52.0,
+    "severity": "MEDIUM",
+    "confidence": 0.5933,
+    "evidence": [
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A309",
+          "A310"
+        ],
+        "shared_values": [
+          "IP44"
+        ],
+        "description": "Accounts A309, A310 share IP address IP44."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A309",
+          "A310"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 1 connected account pair(s) transacting within 30 minutes."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A309",
+          "A310"
+        ],
+        "shared_values": [
+          "high_amount"
+        ],
+        "description": "Suspicious behavior tag 'high_amount' shared across 2 accounts."
+      }
+    ]
+  },
+  {
+    "cluster_id": "CLUSTER_013",
+    "account_ids": [
+      "A401",
+      "A402",
+      "A403",
+      "A404",
+      "A405",
+      "A406",
+      "A407",
+      "A408",
+      "A409",
+      "A410"
+    ],
+    "shared_devices": [],
+    "shared_ips": [
+      "IP50",
+      "IP51",
+      "IP52",
+      "IP53",
+      "IP54"
+    ],
+    "shared_beneficiaries": [
+      "B980",
+      "B981"
+    ],
+    "relationship_types": [
+      "shared_ip",
+      "shared_beneficiary"
+    ],
+    "temporal_pairs": [
+      {
+        "account_a": "A401",
+        "account_b": "A402",
+        "time_diff_minutes": 10.0
+      },
+      {
+        "account_a": "A401",
+        "account_b": "A403",
+        "time_diff_minutes": 20.0
+      },
+      {
+        "account_a": "A402",
+        "account_b": "A403",
+        "time_diff_minutes": 10.0
+      },
+      {
+        "account_a": "A402",
+        "account_b": "A405",
+        "time_diff_minutes": 30.0
+      },
+      {
+        "account_a": "A403",
+        "account_b": "A404",
+        "time_diff_minutes": 10.0
+      },
+      {
+        "account_a": "A403",
+        "account_b": "A405",
+        "time_diff_minutes": 20.0
+      },
+      {
+        "account_a": "A404",
+        "account_b": "A406",
+        "time_diff_minutes": 20.0
+      },
+      {
+        "account_a": "A405",
+        "account_b": "A406",
+        "time_diff_minutes": 10.0
+      },
+      {
+        "account_a": "A405",
+        "account_b": "A407",
+        "time_diff_minutes": 20.0
+      },
+      {
+        "account_a": "A406",
+        "account_b": "A408",
+        "time_diff_minutes": 20.0
+      },
+      {
+        "account_a": "A407",
+        "account_b": "A408",
+        "time_diff_minutes": 10.0
+      },
+      {
+        "account_a": "A407",
+        "account_b": "A409",
+        "time_diff_minutes": 20.0
+      },
+      {
+        "account_a": "A408",
+        "account_b": "A410",
+        "time_diff_minutes": 20.0
+      },
+      {
+        "account_a": "A409",
+        "account_b": "A410",
+        "time_diff_minutes": 10.0
+      }
+    ],
+    "behavioral_overlap": [
+      "high_amount",
+      "high_frequency",
+      "rapid_transactions"
+    ],
+    "Ndev": 0,
+    "Nben": 2,
+    "Nip": 5,
+    "Ntemp": 14,
+    "Nbeh": 3,
+    "Trel": 2,
+    "Nitems": 11,
+    "support_factor": 1.0,
+    "base_risk": 40.0,
+    "diversity_bonus": 15.0,
+    "temporal_bonus": 10.0,
+    "behavioral_bonus": 15.0,
+    "network_raw": 115.0,
+    "network_contribution": 50.0,
+    "cluster_risk": 90.0,
+    "severity": "HIGH",
+    "confidence": 0.8667,
+    "evidence": [
+      {
+        "type": "shared_beneficiary",
+        "accounts": [
+          "A401",
+          "A402",
+          "A403",
+          "A405",
+          "A407",
+          "A409"
+        ],
+        "shared_values": [
+          "B980"
+        ],
+        "description": "Accounts A401, A402, A403, A405, A407, A409 share beneficiary B980."
+      },
+      {
+        "type": "shared_beneficiary",
+        "accounts": [
+          "A404",
+          "A406",
+          "A408",
+          "A410"
+        ],
+        "shared_values": [
+          "B981"
+        ],
+        "description": "Accounts A404, A406, A408, A410 share beneficiary B981."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A401",
+          "A402"
+        ],
+        "shared_values": [
+          "IP50"
+        ],
+        "description": "Accounts A401, A402 share IP address IP50."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A403",
+          "A404"
+        ],
+        "shared_values": [
+          "IP51"
+        ],
+        "description": "Accounts A403, A404 share IP address IP51."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A405",
+          "A406"
+        ],
+        "shared_values": [
+          "IP52"
+        ],
+        "description": "Accounts A405, A406 share IP address IP52."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A407",
+          "A408"
+        ],
+        "shared_values": [
+          "IP53"
+        ],
+        "description": "Accounts A407, A408 share IP address IP53."
+      },
+      {
+        "type": "shared_ip",
+        "accounts": [
+          "A409",
+          "A410"
+        ],
+        "shared_values": [
+          "IP54"
+        ],
+        "description": "Accounts A409, A410 share IP address IP54."
+      },
+      {
+        "type": "temporal_proximity",
+        "accounts": [
+          "A401",
+          "A402",
+          "A403",
+          "A404",
+          "A405",
+          "A406",
+          "A407",
+          "A408",
+          "A409",
+          "A410"
+        ],
+        "shared_values": [
+          "<= 30 minutes"
+        ],
+        "description": "Detected 14 connected account pair(s) transacting within 30 minutes."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A401",
+          "A403",
+          "A405",
+          "A407",
+          "A409"
+        ],
+        "shared_values": [
+          "high_amount"
+        ],
+        "description": "Suspicious behavior tag 'high_amount' shared across 5 accounts."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A402",
+          "A404",
+          "A408"
+        ],
+        "shared_values": [
+          "high_frequency"
+        ],
+        "description": "Suspicious behavior tag 'high_frequency' shared across 3 accounts."
+      },
+      {
+        "type": "behavioral_overlap",
+        "accounts": [
+          "A407",
+          "A410"
+        ],
+        "shared_values": [
+          "rapid_transactions"
+        ],
+        "description": "Suspicious behavior tag 'rapid_transactions' shared across 2 accounts."
+      }
+    ]
+  }
+]

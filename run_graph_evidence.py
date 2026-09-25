@@ -29,22 +29,25 @@ OUTPUT_JSON_PATH = os.path.join("data", "generated", "cluster_results.json")
 OUTPUT_CSV_PATH = os.path.join("data", "generated", "cluster_results.csv")
 
 
-def run_pipeline() -> list[dict]:
+def run_pipeline(
+    synthetic_data_path=SYNTHETIC_DATA_PATH,
+    risk_results_path=RISK_RESULTS_PATH
+) -> list[dict]:
     """Execute full Member 2 pipeline and return structured cluster results."""
     print("=" * 60)
     print(" NEXUS MEMBER 2 — GRAPH + EVIDENCE PIPELINE")
     print("=" * 60)
 
     # 1. Load Inputs
-    if not os.path.exists(SYNTHETIC_DATA_PATH):
-        raise FileNotFoundError(f"Input file missing: {SYNTHETIC_DATA_PATH}")
+    if not os.path.exists(synthetic_data_path):
+        raise FileNotFoundError(f"Input file missing: {synthetic_data_path}")
 
-    if not os.path.exists(RISK_RESULTS_PATH):
-        raise FileNotFoundError(f"Input file missing: {RISK_RESULTS_PATH}")
+    if not os.path.exists(risk_results_path):
+       raise FileNotFoundError(f"Input file missing: {risk_results_path}")
 
-    print(f"[1/7] Loading data from {SYNTHETIC_DATA_PATH} & {RISK_RESULTS_PATH}...")
-    synthetic_df = pd.read_csv(SYNTHETIC_DATA_PATH)
-    risk_results_df = pd.read_csv(RISK_RESULTS_PATH)
+    print(f"[1/7] Loading data from {synthetic_data_path} & {risk_results_path}...")
+    synthetic_df = pd.read_csv(synthetic_data_path)
+    risk_results_df = pd.read_csv(risk_results_path)
 
     print(f"      Synthetic events loaded: {len(synthetic_df)} rows.")
     print(f"      Individual risk results loaded: {len(risk_results_df)} rows.")

@@ -1109,7 +1109,7 @@ Analyst Receives an Auditable Result
 
 The objective is to make the effect of adversarial infrastructure changes measurable while keeping the final security decision human-controlled.
 
-License
+## License
 
 This project is provided as a hackathon/research prototype.
 

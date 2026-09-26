@@ -1,20 +1,18 @@
 # NEXUS — Adversarial Fraud Network Detection & Resilience
 
-> **AI Defense Lab 2026 — Track 2: Fraud, Scam & Identity Defense**
+> AI Defense Lab 2026 — Track 2: Fraud, Scam & Identity Defense
 
-NEXUS is an adversarial fraud-network investigation platform that detects suspicious relationships between synthetic accounts, extracts supporting evidence, calculates risk/severity/confidence, and evaluates how detection changes when an adversary rotates infrastructure such as devices and IP addresses.
+NEXUS is an adversarial fraud-network investigation platform that detects suspicious relationships between synthetic accounts, extracts supporting evidence, calculates risk, severity and confidence, and evaluates how detection changes when an adversary rotates infrastructure such as devices and IP addresses.
 
-Instead of evaluating only whether a suspicious network can be detected, NEXUS also measures:
+The main objective is not only to detect suspicious networks, but also to measure how much detection evidence survives when an adversary changes its infrastructure.
 
-> **How much detection evidence survives when the adversary changes its infrastructure?**
-
-The system uses synthetic data, controlled adversarial mutations, deterministic security logic, and human-controlled analyst decisions.
+NEXUS uses synthetic data, deterministic security logic, controlled adversarial mutations, evidence-based analysis, evaluation metrics, and human-controlled analyst decisions.
 
 ---
 
 ## Project Links
 
-### Source Code
+### GitHub Repository
 
 https://github.com/knimu/NEXUS
 
@@ -22,123 +20,118 @@ https://github.com/knimu/NEXUS
 
 https://nexus-1-epu2.onrender.com/
 
-### Presentation / Demo Video
+### Demo Video
 
 https://youtu.be/hlY9bTJmhkU
 
 ---
 
-# Problem
+## Problem
 
 Coordinated fraud can involve multiple accounts that are connected through shared infrastructure or behavioral patterns.
 
-For example, multiple accounts may:
+Examples of useful relationship signals include:
 
-- share a device
-- share an IP address
-- send funds to the same beneficiary
-- perform transactions within a similar time window
-- exhibit overlapping suspicious behavioral patterns
+- Shared device
+- Shared IP address
+- Shared beneficiary
+- Temporal proximity
+- Behavioral overlap
 
-These relationships can reveal a potential fraud network.
-
-However, an adversary can attempt to reduce its visibility by changing infrastructure identifiers such as devices and IP addresses.
+An adversary can attempt to reduce its visibility by changing infrastructure identifiers such as devices and IP addresses.
 
 A detection system that depends heavily on a single infrastructure relationship may therefore lose evidence when those identifiers change.
 
 NEXUS addresses this problem by combining:
 
-- relationship-based detection
-- graph analysis
-- evidence extraction
-- risk scoring
-- severity and confidence
-- adversarial infrastructure mutation
-- before/after resilience analysis
-- human-controlled decisions
-- audit logging
+- Relationship-based detection
+- Graph analysis
+- Evidence extraction
+- Risk scoring
+- Severity and confidence
+- Adversarial infrastructure mutation
+- Before/after resilience analysis
+- Human-controlled decisions
+- Audit logging
 
 ---
 
-# Security Objective
+## Security Objective
 
-## Threat
+### Threat
 
 A coordinated synthetic fraud network attempts to reduce its visibility by rotating infrastructure identifiers.
 
-## Protected Asset
+### Protected Asset
 
 The ability of an analyst to identify, investigate, and prioritize suspicious account relationships.
 
-## Security Outcome
+### Security Outcome
 
 NEXUS measures:
 
-- suspicious account relationships
-- supporting evidence
-- candidate cluster risk
-- severity
-- confidence
-- evidence lost after adversarial changes
-- remaining relationships after infrastructure rotation
-- changes in candidate-cluster structure
+- Suspicious account relationships
+- Supporting evidence
+- Candidate cluster risk
+- Severity
+- Confidence
+- Evidence lost after adversarial changes
+- Remaining relationships after infrastructure rotation
+- Changes in candidate-cluster structure
 
-The system does **not** identify real criminals, freeze accounts, block real transactions, or make irreversible financial decisions.
+The system does not identify real criminals, freeze accounts, block real transactions, or make irreversible financial decisions.
 
 ---
 
-# End-to-End Workflow
+## End-to-End Workflow
 
 ```text
 Synthetic Transaction Signals
-            │
-            ▼
+            |
+            v
      Individual Risk
-            │
-            ▼
+            |
+            v
     Relationship Graph
-            │
-            ▼
+            |
+            v
     Candidate Clusters
-            │
-            ▼
+            |
+            v
    Evidence Extraction
-            │
-            ▼
+            |
+            v
  Risk / Severity / Confidence
-            │
-            ▼
+            |
+            v
        Dashboard
-            │
-            ▼
+            |
+            v
  Adversarial Device/IP Rotation
-            │
-            ▼
+            |
+            v
        Mutated Data
-            │
-            ▼
-   SAME Detection Pipeline
-            │
-            ▼
-    Before vs After
-            │
-            ▼
+            |
+            v
+   Same Detection Pipeline
+            |
+            v
+    Before / After
+            |
+            v
    Resilience Analysis
-            │
-            ▼
+            |
+            v
       Human Decision
-            │
-            ▼
+            |
+            v
         Audit Log
-
-The adversarial experiment reuses the same detection and evidence pipeline after mutation. This allows the experiment to measure the effect of the infrastructure change rather than comparing different detection systems.
-
 Core Components
 1. Synthetic Data
 
 NEXUS operates on controlled synthetic transaction data.
 
-The dataset contains 50 synthetic accounts/events across scenarios including:
+The dataset contains synthetic accounts and events representing different scenarios, including:
 
 LEGIT_SHARED
 FRAUD_OBVIOUS
@@ -148,35 +141,32 @@ FRAUD_MIXED
 
 The data contains attributes such as:
 
-account ID
-device ID
+Account ID
+Device ID
 IP ID
-beneficiary ID
-timestamp
-transaction amount
-behavioral indicators
-scenario information used for evaluation
+Beneficiary ID
+Timestamp
+Transaction amount
+Behavioral indicators
+Scenario information used for evaluation
 
 No real customer, banking, or personally identifiable information is used.
 
 2. Individual Risk Analysis
 
-The first stage processes transaction/account activity and generates individual risk signals.
+The first stage processes transaction and account activity and generates individual risk signals.
 
-These signals are used by the downstream relationship and evidence analysis pipeline.
+These signals are used by the downstream relationship and evidence-analysis pipeline.
 
-Generated output includes:
-
-data/generated/risk_results.csv
 3. Relationship Graph
 
 NEXUS builds an account relationship graph using shared attributes.
 
 The main relationship signals include:
 
-shared device
-shared IP
-shared beneficiary
+Shared device
+Shared IP
+Shared beneficiary
 
 The graph is implemented using NetworkX.
 
@@ -189,9 +179,9 @@ Ground-truth labels are not used to construct the detection graph.
 Each candidate cluster is accompanied by structured evidence.
 
 Infrastructure Evidence
-shared devices
-shared IP addresses
-shared beneficiaries
+Shared devices
+Shared IP addresses
+Shared beneficiaries
 Temporal Evidence
 
 Accounts conducting transactions within a defined time window can contribute temporal evidence.
@@ -200,34 +190,37 @@ Behavioral Evidence
 
 The system evaluates controlled behavioral indicators including:
 
-high transaction amount
-high transaction frequency
-rapid transactions
-suspicious beneficiary behavior
+High transaction amount
+High transaction frequency
+Rapid transactions
+Suspicious beneficiary behavior
 
-The evidence is retained as structured data so that analysts can inspect why a candidate cluster was surfaced.
+The evidence is retained as structured data so that an analyst can inspect why a candidate cluster was surfaced.
 
- Risk, Severity & Confidence
+Risk, Severity & Confidence
 
 NEXUS exposes multiple dimensions of the investigation result:
 
-cluster risk
-severity
-confidence
-relationship evidence
-temporal evidence
-behavioral evidence
+Cluster risk
+Severity
+Confidence
+Relationship evidence
+Temporal evidence
+Behavioral evidence
 
-This allows the analyst to inspect the evidence supporting a candidate cluster instead of relying only on a single black-box probability.
+This allows the analyst to inspect why a candidate cluster was surfaced instead of relying only on a single probability.
 
 Candidate-cluster membership is an investigation signal and is not equivalent to confirmed fraud.
 
- Adversarial Resilience Testing
+Adversarial Resilience Testing
 
 The distinguishing component of NEXUS is controlled adversarial infrastructure rotation.
 
-Three attack scenarios are evaluated.
+Three adversarial scenarios are evaluated:
 
+Device Rotation
+IP Rotation
+Combined Device + IP Rotation
 1. Device Rotation
 
 Accounts retain their other information but receive different device identifiers.
@@ -236,35 +229,37 @@ Example:
 
 Before:
 
-A101 → D20
-A102 → D20
-A103 → D20
+A101 -> D20
+A102 -> D20
+A103 -> D20
+
 
 After:
 
-A101 → D101
-A102 → D102
-A103 → D103
+A101 -> D101
+A102 -> D102
+A103 -> D103
 
 The shared-device relationship is therefore removed.
 
 2. IP Rotation
 
-Accounts receive different IP identifiers while the other transaction information remains unchanged.
+Accounts receive different IP identifiers while other transaction information remains unchanged.
 
 Example:
 
 Before:
 
-A101 → IP20
-A102 → IP20
-A103 → IP20
+A101 -> IP20
+A102 -> IP20
+A103 -> IP20
+
 
 After:
 
-A101 → IP101
-A102 → IP102
-A103 → IP103
+A101 -> IP101
+A102 -> IP102
+A103 -> IP103
 
 The shared-IP relationship is therefore removed.
 
@@ -272,64 +267,62 @@ The shared-IP relationship is therefore removed.
 
 Both infrastructure identifiers are changed.
 
+Example:
+
 Before:
 
-A101 → D20 + IP20
-A102 → D20 + IP20
-A103 → D20 + IP20
+A101 -> D20 + IP20
+A102 -> D20 + IP20
+A103 -> D20 + IP20
+
 
 After:
 
-A101 → D101 + IP101
-A102 → D102 + IP102
-A103 → D103 + IP103
+A101 -> D101 + IP101
+A102 -> D102 + IP102
+A103 -> D103 + IP103
 
-The adversarial simulator does not intentionally modify:
+The adversarial simulator does not intentionally modify the other core synthetic signals used in the experiment.
 
-account identity
-beneficiary
-transaction amount
-timestamp
-scenario
-ground-truth fields
+Same Detector Principle
 
-for these experiments.
-
- Same Detector Principle
-
-The adversarial experiment follows the same detection process before and after mutation:
+The adversarial experiment uses the same detection and evidence pipeline before and after mutation.
 
 Baseline Data
-     │
-     ▼
-Existing Detection Pipeline
-     │
-     ▼
-Baseline Clusters + Evidence
-     │
-     ▼
+      |
+      v
+Detection Pipeline
+      |
+      v
+Baseline Results
+      |
+      v
 Infrastructure Mutation
-     │
-     ▼
+      |
+      v
 Mutated Data
-     │
-     ▼
+      |
+      v
 Same Detection Pipeline
-     │
-     ▼
-New Clusters + Evidence
-     │
-     ▼
+      |
+      v
+Adversarial Results
+      |
+      v
 Before / After Comparison
-     │
-     ▼
+      |
+      v
 Resilience Analysis
 
-This allows NEXUS to measure how the attack changes the graph and evidence rather than changing the detector itself.
+This allows the experiment to measure the effect of infrastructure changes rather than comparing different detection systems.
 
-Ground truth is reserved for post-detection evaluation and is not used to construct the detection graph, perform clustering, calculate detection evidence, or choose the adversarial mutation.
+Ground truth is reserved for post-detection evaluation and is not used to:
 
- Adversarial Resilience Results
+Construct the detection graph
+Perform clustering
+Calculate detection evidence
+Select the adversarial mutation
+Adversarial Resilience Results
 
 NEXUS was tested against three controlled infrastructure changes.
 
@@ -343,10 +336,10 @@ Device Rotation
 
 Shared-device relationships were removed.
 
-The graph still retained other relationship and behavioral evidence, resulting in:
+The graph still retained other relationship and behavioral evidence.
 
 Evidence:
-63 → 55
+63 -> 55
 
 Evidence survival:
 87.3%
@@ -354,16 +347,16 @@ IP Rotation
 
 Shared-IP relationships were removed.
 
-The relationship graph became substantially more fragmented:
+The relationship graph became more fragmented.
 
 Clusters:
-13 → 4
+13 -> 4
 
 Clustered accounts:
-50 → 30
+50 -> 30
 
 Evidence:
-63 → 28
+63 -> 28
 
 Evidence survival:
 44.4%
@@ -371,32 +364,31 @@ Combined Device + IP Rotation
 
 Both shared-device and shared-IP relationships were removed.
 
-The remaining evidence included other signals such as:
+Remaining evidence included other signals such as:
 
-shared beneficiaries
-temporal proximity
-behavioral overlap
+Shared beneficiaries
+Temporal proximity
+Behavioral overlap
 
 Results:
 
 Clusters:
-13 → 6
+13 -> 6
 
 Clustered accounts:
-50 → 30
+50 -> 30
 
 Evidence:
-63 → 30
+63 -> 30
 
 Evidence survival:
 47.6%
 
-The experiment therefore demonstrates both:
+The experiment demonstrates both:
 
-residual detection evidence after infrastructure rotation
-the limitation of infrastructure-dependent relationship detection
-
- Important Interpretation of Clustered Accounts
+Residual detection evidence after infrastructure rotation
+The limitation of infrastructure-dependent relationship detection
+Important Interpretation of Clustered Accounts
 
 Clustered Accounts means accounts belonging to connected candidate components.
 
@@ -410,7 +402,7 @@ Before IP Rotation:
 After IP Rotation:
 30 clustered accounts
 
-This means the relationship graph became more fragmented.
+This means that the relationship graph became more fragmented.
 
 It should not be interpreted as:
 
@@ -426,17 +418,14 @@ NEXUS includes a separate evaluation layer that compares candidate-cluster outpu
 
 Metrics include:
 
-population
-actual positives
-predicted positives
-true positives
-false positives
-false negatives
-true negatives
-precision
-recall
-F1
-false-positive rate
+Precision
+Recall
+F1 score
+False-positive rate
+True positives
+False positives
+False negatives
+True negatives
 Candidate Cluster Evaluation
 Scenario	Precision	Recall	F1	False Positive Rate
 Baseline	60%	100%	75%	100%
@@ -445,7 +434,7 @@ IP Rotation	100%	100%	100%	0%
 Combined Device + IP Rotation	100%	100%	100%	0%
 High-Severity Evaluation
 
-For the high-severity subset, the evaluation results are:
+For the high-severity subset:
 
 Scenario	Precision	Recall	F1	False Positive Rate
 Baseline	100%	100%	100%	0%
@@ -455,24 +444,22 @@ Combined Device + IP Rotation	100%	100%	100%	0%
 
 These metrics are based on the controlled synthetic evaluation dataset and should not be interpreted as production fraud-detection performance.
 
- Evaluation Data Separation
+Evaluation Data Separation
 
 Ground-truth labels are intentionally separated from the detection process.
 
 Ground truth is not used to:
 
-construct the relationship graph
-create candidate clusters
-calculate detection evidence
-calculate detection risk
-select the adversarial mutation
-alter the detection algorithm
+Construct the relationship graph
+Create candidate clusters
+Calculate detection evidence
+Calculate detection risk
+Select the adversarial mutation
+Alter the detection algorithm
 
 Ground truth is used after detection to evaluate the resulting candidate clusters.
 
-This separation reduces evaluation leakage into the detection workflow.
-
- Human Analyst Control
+Human Analyst Control
 
 NEXUS does not automatically freeze, block, or close accounts.
 
@@ -486,18 +473,18 @@ ESCALATE
 
 A decision can include:
 
-timestamp
-cluster ID
-decision
-analyst reason
+Timestamp
+Cluster ID
+Decision
+Analyst reason
 
 This creates an auditable record of the human-controlled response.
 
-The system therefore acts as decision support rather than autonomous enforcement.
+NEXUS therefore acts as decision support rather than autonomous enforcement.
 
 Audit Trail
 
-Example audit decisions:
+Example analyst decisions:
 
 {
   "cluster_id": "CLUSTER_006",
@@ -525,153 +512,137 @@ System Overview
 
 Displays:
 
-total accounts
-candidate clusters
-clustered accounts
-high-severity clusters
-evidence count
+Total accounts
+Candidate clusters
+Clustered accounts
+High-severity clusters
+Evidence count
 Candidate Cluster Investigation
 
 Displays:
 
-cluster membership
-relationship evidence
-risk
-severity
-confidence
-supporting evidence
+Cluster membership
+Relationship evidence
+Risk
+Severity
+Confidence
+Supporting evidence
 Adversarial Resilience Analysis
 
 Displays:
 
-baseline
-device rotation
+Baseline
+Device rotation
 IP rotation
-combined rotation
-cluster changes
-evidence survival
-risk changes
-confidence changes
+Combined rotation
+Cluster changes
+Evidence survival
+Risk changes
+Confidence changes
 Evaluation
 
 Displays:
 
-precision
-recall
+Precision
+Recall
 F1
-false-positive rate
-evaluation results across adversarial cases
+False-positive rate
+Evaluation results across adversarial cases
 Human Analyst Audit Trail
 
 Displays:
 
-cluster
-analyst decision
-reason
-timestamp
-
+Cluster
+Analyst decision
+Reason
+Timestamp
 Architecture
-                 ┌────────────────────────┐
-                 │   Synthetic Dataset   │
-                 └────────────┬───────────┘
-                              │
-                              ▼
-                 ┌────────────────────────┐
-                 │    Individual Risk     │
-                 └────────────┬───────────┘
-                              │
-                              ▼
-                 ┌────────────────────────┐
-                 │   Relationship Graph   │
-                 │        NetworkX        │
-                 └────────────┬───────────┘
-                              │
-                              ▼
-                 ┌────────────────────────┐
-                 │   Candidate Clusters   │
-                 └────────────┬───────────┘
-                              │
-                              ▼
-                 ┌────────────────────────┐
-                 │    Evidence Engine     │
-                 │ Device / IP / Benef.   │
-                 │ Temporal / Behavioral  │
-                 └────────────┬───────────┘
-                              │
-                              ▼
-                 ┌────────────────────────┐
-                 │ Risk / Severity /      │
-                 │ Confidence             │
-                 └────────────┬───────────┘
-                              │
-                              ▼
-                 ┌────────────────────────┐
-                 │       Flask API        │
-                 └────────────┬───────────┘
-                              │
-                              ▼
-                 ┌────────────────────────┐
-                 │       Dashboard        │
-                 └────────────┬───────────┘
-                              │
-                              ▼
-                 ┌────────────────────────┐
-                 │ Adversarial Simulator  │
-                 │ Device / IP Rotation   │
-                 └────────────┬───────────┘
-                              │
-                              ▼
-                 ┌────────────────────────┐
-                 │   Same Detection       │
-                 │      Pipeline          │
-                 └────────────┬───────────┘
-                              │
-                              ▼
-                 ┌────────────────────────┐
-                 │ Resilience Analyzer    │
-                 └────────────┬───────────┘
-                              │
-                              ▼
-                 ┌────────────────────────┐
-                 │ Human Decision +       │
-                 │ Audit Log               │
-                 └────────────────────────┘
-📁 Project Structure
-NEXUS/
-│
-├── app/
-│   ├── __init__.py
-│   ├── __main__.py
-│   └── routes.py
-│
-├── risk_engine/
-│
-├── graph_engine/
-│
-├── evidence/
-│
-├── adversarial/
-│   ├── attack_simulator.py
-│   ├── device_rotation.py
-│   ├── ip_rotation.py
-│   ├── resilience_analyzer.py
-│   └── run_adversarial.py
-│
-├── evaluation/
-│   ├── __init__.py
-│   ├── metrics.py
-│   └── run_evaluation.py
-│
-├── tests/
-│   └── test_evaluation.py
-│
-├── data/
-│   └── generated/
-│
-├── requirements.txt
-├── .gitignore
-└── README.md
-⚙️ Technology Stack
+
+The high-level architecture is:
+
+                    +--------------------------+
+                    |   Synthetic Transaction  |
+                    |          Data            |
+                    |                          |
+                    | Accounts / Devices / IPs |
+                    | Beneficiaries / Time     |
+                    | Amounts / Behavior       |
+                    +------------+-------------+
+                                 |
+                                 v
+                    +--------------------------+
+                    |    Individual Risk       |
+                    |        Analysis          |
+                    +------------+-------------+
+                                 |
+                                 v
+                    +--------------------------+
+                    |    Relationship Graph    |
+                    |         NetworkX         |
+                    |                          |
+                    | Shared Device / IP /     |
+                    | Beneficiary Relationships |
+                    +------------+-------------+
+                                 |
+                                 v
+                    +--------------------------+
+                    |   Candidate Clusters     |
+                    +------------+-------------+
+                                 |
+                                 v
+                    +--------------------------+
+                    |    Evidence Extraction   |
+                    |                          |
+                    | Relationship / Temporal  |
+                    | Behavioral Evidence      |
+                    +------------+-------------+
+                                 |
+                                 v
+                    +--------------------------+
+                    | Risk / Severity /         |
+                    | Confidence                |
+                    +------------+-------------+
+                                 |
+                                 v
+                    +--------------------------+
+                    |      Flask API            |
+                    +------------+-------------+
+                                 |
+                                 v
+                    +--------------------------+
+                    |       Dashboard           |
+                    +------+-------------------+
+                           |
+              +------------+-------------+
+              |                          |
+              v                          v
+   +----------------------+    +--------------------------+
+   | Human Analyst        |    | Adversarial Testing      |
+   |                      |    |                          |
+   | ALLOW                |    | Device Rotation          |
+   | REVIEW               |    | IP Rotation              |
+   | ESCALATE             |    | Combined Rotation        |
+   +----------+-----------+    +------------+-------------+
+              |                             |
+              v                             v
+   +----------------------+      +-------------------------+
+   |      Audit Log       |      |      Mutated Data       |
+   +----------------------+      +------------+------------+
+                                             |
+                                             v
+                                  +-------------------------+
+                                  | SAME Detection Pipeline |
+                                  +------------+------------+
+                                               |
+                                               v
+                                  +-------------------------+
+                                  | Before / After          |
+                                  | Resilience Analysis     |
+                                  +-------------------------+
+
+The adversarial experiment intentionally sends the mutated data back through the same detection pipeline.
+
+Technology Stack
 Technology	Purpose
 Python	Core implementation
 Pandas	Synthetic data processing
@@ -684,7 +655,42 @@ Render	Live deployment
 
 NEXUS intentionally uses a lightweight architecture suitable for a reproducible security prototype.
 
-🚀 Installation
+Project Structure
+NEXUS/
+|
++-- app/
+|   +-- __init__.py
+|   +-- __main__.py
+|   +-- routes.py
+|
++-- risk_engine/
+|
++-- graph_engine/
+|
++-- evidence/
+|
++-- adversarial/
+|   +-- attack_simulator.py
+|   +-- device_rotation.py
+|   +-- ip_rotation.py
+|   +-- resilience_analyzer.py
+|   +-- run_adversarial.py
+|
++-- evaluation/
+|   +-- __init__.py
+|   +-- metrics.py
+|   +-- run_evaluation.py
+|
++-- tests/
+|   +-- test_evaluation.py
+|
++-- data/
+|   +-- generated/
+|
++-- requirements.txt
++-- .gitignore
++-- README.md
+Installation
 Requirements
 Python 3.9+
 Git
@@ -701,35 +707,33 @@ python3 -m venv .venv
 source .venv/bin/activate
 3. Install Dependencies
 pip install -r requirements.txt
-▶️ Running the Application
+Running the Application
 
 Run:
 
 python -m app
 
-The local dashboard/API will be available at:
+The local application will be available at:
 
 http://127.0.0.1:5000
-🧪 Running Tests
+Running Tests
 
-Run the complete test suite:
+Run the test suite:
 
 python -m pytest -q
 
-The current development test suite contains 39 passing tests.
+The current test suite covers areas including:
 
-The tests cover areas including:
-
-graph construction
-relationship detection
-evidence extraction
-integration
-adversarial mutation
-determinism
-data integrity
-evaluation metrics
-application behavior
-🧨 Running the Adversarial Experiments
+Graph construction
+Relationship detection
+Evidence extraction
+Integration
+Adversarial mutation
+Determinism
+Data integrity
+Evaluation metrics
+Application behavior
+Running the Adversarial Experiments
 
 Run the complete adversarial experiment suite from the repository root:
 
@@ -737,30 +741,26 @@ python -m adversarial.run_adversarial
 
 The runner evaluates:
 
-baseline
-device rotation
+Baseline
+Device rotation
 IP rotation
-combined device + IP rotation
+Combined device + IP rotation
 
-The generated results are used by the dashboard and resilience analysis.
+The generated results are used by the resilience analysis and dashboard.
 
-The original synthetic dataset is preserved; adversarial experiments operate on controlled mutated data.
+Running the Evaluation
 
-📊 Evaluation Pipeline
-
-The evaluation can be run with:
+Run:
 
 python -m evaluation.run_evaluation
 
-The evaluation results are written to the generated evaluation output directory.
+The evaluation compares detection outputs against synthetic ground truth after the detection process has completed.
 
-The evaluation layer compares detection outputs against synthetic ground truth only after the detection process has completed.
-
-🔌 API
+API
 
 NEXUS exposes a Flask API.
 
-Overview
+Main Application
 GET /
 
 Returns the main application/dashboard.
@@ -821,9 +821,9 @@ ESCALATE
 
 The endpoint validates malformed or invalid requests and returns appropriate error responses.
 
-🧪 Testing Coverage
+Testing Coverage
 
-NEXUS was tested using multiple categories required for a security prototype:
+NEXUS was tested using multiple categories of security scenarios.
 
 Normal Case
 
@@ -845,30 +845,30 @@ Adversarial Case
 
 Device and IP identifiers are rotated and the same detection pipeline is rerun.
 
-🔐 Privacy & Safety
+Privacy & Safety
 
 NEXUS is a controlled security research and hackathon prototype.
 
 The project uses
-synthetic transaction data
-synthetic account identifiers
-synthetic infrastructure identifiers
-controlled adversarial mutations
-synthetic ground-truth labels for evaluation
+Synthetic transaction data
+Synthetic account identifiers
+Synthetic infrastructure identifiers
+Controlled adversarial mutations
+Synthetic ground-truth labels for evaluation
 The project does not
-use real customer banking data
-use confidential personal information
-identify real criminals
-connect to real banking systems
-automatically freeze accounts
-automatically block transactions
-execute financial transactions
-make irreversible financial decisions
-treat candidate clusters as proof of criminal activity
+Use real customer banking data
+Use confidential personal information
+Identify real criminals
+Connect to real banking systems
+Automatically freeze accounts
+Automatically block transactions
+Execute financial transactions
+Make irreversible financial decisions
+Treat candidate clusters as proof of criminal activity
 
 Candidate clusters represent investigation signals that require analyst interpretation.
 
-📦 Dataset & Data Sources
+Dataset & Data Sources
 
 All data used for the NEXUS demonstration is synthetic.
 
@@ -876,42 +876,41 @@ No external private or confidential dataset is used.
 
 Synthetic data includes controlled:
 
-account identifiers
-device identifiers
+Account identifiers
+Device identifiers
 IP identifiers
-beneficiary identifiers
-timestamps
-transaction amounts
-behavioral indicators
-scenario labels
+Beneficiary identifiers
+Timestamps
+Transaction amounts
+Behavioral indicators
+Scenario labels
 
 The ground-truth fields are reserved for post-detection evaluation.
 
 No real customer or banking information is required to run the project.
 
-🌐 APIs & External Services
+APIs & External Services
 
 NEXUS does not depend on an external fraud-detection API or banking API.
 
-External / Infrastructure Services
 GitHub
 
 Used for:
 
-source-code hosting
-version control
-project submission
+Source-code hosting
+Version control
+Project submission
 Render
 
 Used for:
 
-live deployment of the Flask application
+Live deployment of the Flask application
 
-The application does not require external API credentials for its core detection pipeline.
+The core detection pipeline does not require external API credentials.
 
-📚 Dependencies
+Dependencies
 
-The main Python dependencies are listed in:
+The Python dependencies are listed in:
 
 requirements.txt
 
@@ -923,25 +922,35 @@ flask
 gunicorn
 pytest
 
-These are standard open-source software libraries used for data processing, graph analysis, web serving, deployment, and testing.
+These are standard open-source libraries used for:
 
-🧩 Pre-existing Components
+Data processing
+Graph analysis
+Web application development
+Production serving
+Automated testing
+Pre-existing Components
 
 NEXUS was developed as a project for AI Defense Lab 2026.
 
 No pre-existing NEXUS implementation was intentionally reused as the core project.
 
-The project uses standard open-source libraries such as Pandas, NetworkX, Flask, Gunicorn, and Pytest.
+The project uses standard open-source libraries including:
 
-🔑 Secrets & Credentials
+Pandas
+NetworkX
+Flask
+Gunicorn
+Pytest
+Secrets & Credentials
 
 No API keys, passwords, authentication tokens, private credentials, or confidential data are required for the core project.
 
 Do not add credentials or secrets to the repository.
 
-🔬 Reproducibility
+Reproducibility
 
-The adversarial experiment is deterministic for the same input and mutation configuration.
+The adversarial experiments use controlled mutations and the same detection pipeline for comparison.
 
 The experimental principle is:
 
@@ -950,15 +959,13 @@ Same Input
 Same Mutation
     +
 Same Detection Pipeline
-    ↓
+    |
+    v
 Reproducible Output
 
-This allows the baseline and adversarial cases to be compared consistently.
+This allows baseline and adversarial cases to be compared consistently.
 
-⚠️ Limitations
-
-NEXUS is a prototype and has several important limitations.
-
+Limitations
 1. Infrastructure Dependence
 
 Device and IP relationships provide useful signals, but an adversary can change them.
@@ -985,10 +992,10 @@ The prototype uses a controlled set of behavioral indicators rather than a produ
 
 NEXUS does not connect to:
 
-banking infrastructure
-payment processors
-real transaction systems
-customer identity systems
+Banking infrastructure
+Payment processors
+Real transaction systems
+Customer identity systems
 6. Human Review
 
 The system provides investigation evidence and prioritization.
@@ -1001,22 +1008,22 @@ The current resilience experiments focus on controlled device and IP rotation.
 
 Other evasion techniques, such as more complex behavioral mimicry or coordinated changes across additional attributes, are outside the current prototype scope.
 
-🎥 Demo
+Demo
 
-The demonstration shows:
+The demonstration covers:
 
-the fraud-network detection workflow
-candidate cluster generation
-evidence extraction
-risk/severity/confidence
-adversarial device rotation
-adversarial IP rotation
-combined device + IP rotation
-before/after resilience analysis
-evaluation results
-human analyst decisions
-audit logging
-YouTube
+Fraud-network detection
+Candidate cluster generation
+Evidence extraction
+Risk, severity and confidence
+Device rotation
+IP rotation
+Combined device + IP rotation
+Before/after resilience analysis
+Evaluation results
+Human analyst decisions
+Audit logging
+YouTube Demo
 
 https://youtu.be/hlY9bTJmhkU
 
@@ -1024,7 +1031,7 @@ Live Application
 
 https://nexus-1-epu2.onrender.com/
 
-🏆 AI Defense Lab 2026
+AI Defense Lab 2026
 
 Event: AI Defense Lab 2026
 
@@ -1032,19 +1039,23 @@ Track: Track 2 — Fraud, Scam & Identity Defense
 
 Project: NEXUS — Adversarial Fraud Network Detection & Resilience
 
-NEXUS implements a complete security workflow:
+NEXUS implements the following security workflow:
 
 Signal
-  ↓
+  |
+  v
 Security Analysis
-  ↓
+  |
+  v
 Evidence
-  ↓
+  |
+  v
 Decision
-  ↓
+  |
+  v
 Controlled Action
 
-with additional:
+The system additionally incorporates:
 
 Adversarial Testing
         +
@@ -1053,17 +1064,17 @@ Evaluation
 Auditability
         +
 Human Control
-👥 Team
+Team
 
 NEXUS was developed by a team of 4 for AI Defense Lab 2026.
 
 Team-member details are provided through the official hackathon submission form.
 
-📌 Key Takeaway
+Key Takeaway
 
 NEXUS does not treat fraud detection as a single classification result.
 
-It evaluates:
+Instead, it evaluates:
 
 Relationship Detection
         +
@@ -1080,15 +1091,20 @@ Human Decision Control
 The central experiment is:
 
 Infrastructure Rotation
-        ↓
+        |
+        v
 Relationship Evidence Changes
-        ↓
+        |
+        v
 Graph Structure Changes
-        ↓
+        |
+        v
 Candidate Visibility Changes
-        ↓
+        |
+        v
 Remaining Evidence Is Measured
-        ↓
+        |
+        v
 Analyst Receives an Auditable Result
 
 The objective is to make the effect of adversarial infrastructure changes measurable while keeping the final security decision human-controlled.

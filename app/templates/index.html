@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS — Fraud Network Investigation & Resilience</title>
+    <!-- Modern CSS & Font -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Cytoscape.js CDN for Relationship Graph -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="navbar-brand">
+            <div class="logo-badge">NEXUS</div>
+            <div class="logo-text">
+                <span class="logo-title">AI DEFENSE LAB 2026</span>
+                <span class="logo-subtitle">Fraud Network Investigation & Resilience Platform</span>
+            </div>
+        </div>
+        <div class="navbar-status">
+            <span class="status-indicator"></span>
+            <span class="status-text">Pipeline Active</span>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- System Overview Section -->
+        <section class="overview-section">
+            <div class="section-header">
+                <h2>SYSTEM OVERVIEW</h2>
+                <span class="section-subtitle">Real-time telemetry from Member 1 Risk Engine & Member 2 Graph Evidence Engine</span>
+            </div>
+            <div class="overview-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Total Accounts</div>
+                    <div class="metric-value" id="metric-total-accounts">-</div>
+                    <div class="metric-foot">Synthetic dataset accounts</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Detected Clusters</div>
+                    <div class="metric-value" id="metric-cluster-count">-</div>
+                    <div class="metric-foot">Candidate graph components</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Clustered Accounts</div>
+                    <div class="metric-value" id="metric-clustered-accounts">-</div>
+                    <div class="metric-foot">Accounts with shared attributes</div>
+                </div>
+                <div class="metric-card highlight-card">
+                    <div class="metric-label">High Severity Clusters</div>
+                    <div class="metric-value" id="metric-high-severity">-</div>
+                    <div class="metric-foot">Risk score &ge; 60</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Total Evidence Items</div>
+                    <div class="metric-value" id="metric-total-evidence">-</div>
+                    <div class="metric-foot">Attribute, temporal & behavioral</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Investigation Workspace -->
+        <div class="workspace-grid">
+
+            <!-- Left Panel: Cluster List -->
+            <div class="panel cluster-list-panel">
+                <div class="panel-header">
+                    <h3>CANDIDATE CLUSTERS</h3>
+                    <div class="search-box">
+                        <input type="text" id="cluster-search" placeholder="Search cluster or account..." onkeyup="filterClusters()">
+                    </div>
+                </div>
+                <div class="panel-body table-container">
+                    <table class="data-table" id="clusters-table">
+                        <thead>
+                            <tr>
+                                <th>Cluster ID</th>
+                                <th>Accounts</th>
+                                <th>Risk Score</th>
+                                <th>Severity</th>
+                                <th>Confidence</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clusters-table-body">
+                            <tr>
+                                <td colspan="5" class="loading-cell">Loading candidate clusters...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Right Panel: Cluster Details & Evidence -->
+            <div class="panel cluster-detail-panel" id="detail-panel">
+                <div class="panel-header">
+                    <h3>CLUSTER INVESTIGATION VIEW</h3>
+                    <div id="selected-cluster-badge">Select a cluster to inspect</div>
+                </div>
+
+                <div class="panel-body" id="detail-body">
+                    <div class="empty-selection-state">
+                        <div class="icon">&boxbox;</div>
+                        <h4>No Cluster Selected</h4>
+                        <p>Click any candidate cluster in the list to inspect relationship graph, extracted evidence, and submit human analyst decisions.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Account Inspection Drawer (Modal) -->
+        <div id="account-modal" class="modal-backdrop hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-account-title">Account Details</h3>
+                    <button class="modal-close-btn" onclick="closeAccountModal()">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-account-body">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Adversarial Resilience Section -->
+        <section class="adversarial-section">
+            <div class="section-header">
+                <h2>ADVERSARIAL RESILIENCE ANALYSIS</h2>
+                <span class="section-subtitle">Evaluating network detector stability under infrastructure rotation attacks (Member 3)</span>
+            </div>
+
+            <div class="attack-selector-bar">
+                <button class="attack-btn active" onclick="loadAdversarialAttack('device_rotation', this)">Device Rotation</button>
+                <button class="attack-btn" onclick="loadAdversarialAttack('ip_rotation', this)">IP Rotation</button>
+                <button class="attack-btn" onclick="loadAdversarialAttack('combined', this)">Combined Rotation</button>
+            </div>
+
+            <div class="adversarial-grid">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3 id="attack-title">Resilience Metric Comparison</h3>
+                    </div>
+                    <div class="panel-body table-container">
+                        <table class="data-table" id="adversarial-table">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Baseline</th>
+                                    <th>Attack Scenario</th>
+                                    <th>Change (&Delta;)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adversarial-table-body">
+                                <tr>
+                                    <td colspan="4" class="loading-cell">Loading resilience metrics...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>TECHNICAL INTERPRETATION</h3>
+                    </div>
+                    <div class="panel-body interpretation-body" id="interpretation-box">
+                        <p class="neutral-prose">
+                            Infrastructure rotation attacks test whether fraud network detection relies on single static identifiers or multi-modal evidence combinations. Select an attack scenario above to analyze evidence survival rates and network graph fragmentation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audit Log Section -->
+        <section class="audit-section">
+            <div class="section-header">
+                <h2>HUMAN ANALYST AUDIT TRAIL</h2>
+                <span class="section-subtitle">Persistent decision log of explicit human analyst reviews, approvals, and escalations</span>
+            </div>
+            <div class="panel">
+                <div class="panel-body table-container">
+                    <table class="data-table" id="audit-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp (UTC)</th>
+                                <th>Cluster ID</th>
+                                <th>Analyst Decision</th>
+                                <th>Mandatory Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody id="audit-table-body">
+                            <tr>
+                                <td colspan="4" class="loading-cell">Loading audit trail...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Application Dashboard Logic -->
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

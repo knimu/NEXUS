@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchClusters();
     fetchAuditLog();
     loadAdversarialAttack('device_rotation');
+    fetchEvaluation();
 });
 
 // 1. Fetch Overview Telemetry
@@ -31,6 +32,43 @@ async function fetchOverview() {
     } catch (err) {
         console.error('Error in fetchOverview:', err);
     }
+}
+
+async function fetchEvaluation() {
+    const resilienceBody = document.getElementById('evaluation-resilience-body');
+    const metricsBody = document.getElementById('evaluation-metrics-body');
+    const notes = document.getElementById('evaluation-notes');
+    try {
+        const response = await fetch('/api/evaluation');
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Failed to load evaluation results');
+
+        resilienceBody.innerHTML = data.resilience.map(row => `
+            <tr><td>${row.label}</td><td>${row.detected_cluster_count}</td><td>${row.clustered_account_count}</td>
+                <td>${row.shared_device_count}</td><td>${row.shared_ip_count}</td><td>${row.shared_beneficiary_count}</td>
+                <td>${row.total_evidence_count}</td><td>${formatPercentage(row.evidence_survival_percentage)}</td>
+                <td>${Number(row.average_cluster_risk).toFixed(2)}</td><td>${formatPercentage(row.average_confidence, true)}</td></tr>
+        `).join('');
+        metricsBody.innerHTML = data.resilience.flatMap(row => [
+            renderMetricRow('Candidate', row.label, row.candidate_cluster_metrics),
+            renderMetricRow('High severity', row.label, row.high_severity_metrics),
+        ]).join('');
+        notes.innerHTML = `<p>${data.notes.metrics}</p><p>${data.notes.interpretation}</p>`;
+    } catch (err) {
+        const message = `Evaluation unavailable: ${err.message}`;
+        resilienceBody.innerHTML = `<tr><td colspan="10" class="loading-cell error-text">${message}</td></tr>`;
+        metricsBody.innerHTML = `<tr><td colspan="6" class="loading-cell error-text">${message}</td></tr>`;
+        notes.innerHTML = '';
+    }
+}
+
+function formatPercentage(value, fractional = false) {
+    if (value === null || value === undefined) return 'N/A';
+    return `${(Number(value) * (fractional ? 100 : 1)).toFixed(1)}%`;
+}
+
+function renderMetricRow(signal, scenario, metrics) {
+    return `<tr><td>${signal}</td><td>${scenario}</td><td>${formatPercentage(metrics.precision, true)}</td><td>${formatPercentage(metrics.recall, true)}</td><td>${formatPercentage(metrics.f1, true)}</td><td>${formatPercentage(metrics.false_positive_rate, true)}</td></tr>`;
 }
 
 // 2. Fetch Candidate Clusters

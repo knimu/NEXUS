@@ -10,6 +10,7 @@ from app.services import (
     get_audit_log,
     record_decision,
     get_adversarial_comparison,
+    get_evaluation_data,
 )
 
 main_bp = Blueprint("main", __name__)
@@ -78,6 +79,17 @@ def api_adversarial_attack(attack_type: str):
         return jsonify(data), 200
     except Exception as e:
         return jsonify({"error": f"Error processing adversarial attack data: {str(e)}"}), 500
+
+
+@main_bp.route("/api/evaluation", methods=["GET"])
+def api_evaluation():
+    """GET /api/evaluation — Generated evaluation and resilience summary."""
+    try:
+        return jsonify(get_evaluation_data()), 200
+    except ValueError as e:
+        return jsonify({"error": f"Evaluation data unavailable: {str(e)}"}), 503
+    except Exception as e:
+        return jsonify({"error": f"Error retrieving evaluation data: {str(e)}"}), 500
 
 
 @main_bp.route("/api/audit", methods=["GET"])

@@ -566,6 +566,43 @@ body {
     padding: 12px;
 }
 
+/* Evaluation Section */
+.evaluation-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.evaluation-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 16px;
+}
+
+.evaluation-table {
+    min-width: 940px;
+}
+
+.evaluation-notes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.evaluation-notes p {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.error-text {
+    color: #f87171;
+}
+
 /* Modal */
 .modal-backdrop {
     position: fixed;

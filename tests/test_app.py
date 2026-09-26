@@ -78,6 +78,31 @@ def test_6_api_adversarial_summary(client):
     assert "attack_comparisons" in data
 
 
+def test_6b_api_evaluation_returns_generated_results(client):
+    """GET /api/evaluation returns resilience rows and both metric families."""
+    response = client.get("/api/evaluation")
+    assert response.status_code == 200
+    data = response.get_json()
+    assert [row["name"] for row in data["resilience"]] == [
+        "baseline", "device_rotation", "ip_rotation", "combined"
+    ]
+    assert data["resilience"][3]["candidate_cluster_metrics"]["f1"] == 1.0
+    assert "precision" in data["resilience"][0]["high_severity_metrics"]
+    assert "Combined device and IP rotation" in data["notes"]["interpretation"]
+
+
+def test_6c_api_evaluation_handles_corrupt_summary(client, monkeypatch, tmp_path):
+    """GET /api/evaluation reports corrupt generated data without crashing."""
+    corrupt_path = tmp_path / "evaluation_summary.json"
+    corrupt_path.write_text("{not valid json", encoding="utf-8")
+
+    monkeypatch.setattr("app.services.EVALUATION_SUMMARY_PATH", str(corrupt_path))
+    response = client.get("/api/evaluation")
+
+    assert response.status_code == 503
+    assert "Evaluation data unavailable" in response.get_json()["error"]
+
+
 def test_7_api_adversarial_device_rotation(client):
     """Test 7: GET /api/adversarial/device_rotation returns 200."""
     response = client.get("/api/adversarial/device_rotation")

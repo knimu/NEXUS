@@ -178,6 +178,50 @@
             </div>
         </section>
 
+        <!-- Evaluation & Adversarial Resilience Section -->
+        <section class="evaluation-section">
+            <div class="section-header">
+                <h2>EVALUATION &amp; ADVERSARIAL RESILIENCE</h2>
+                <span class="section-subtitle">Generated evaluation results across infrastructure rotation scenarios</span>
+            </div>
+            <div class="evaluation-grid">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>RESILIENCE COMPARISON</h3>
+                    </div>
+                    <div class="panel-body table-container">
+                        <table class="data-table evaluation-table" id="evaluation-resilience-table">
+                            <thead>
+                                <tr>
+                                    <th>Scenario</th><th>Clusters</th><th>Accounts</th><th>Devices</th><th>IPs</th>
+                                    <th>Beneficiaries</th><th>Evidence</th><th>Survival</th><th>Avg Risk</th><th>Avg Confidence</th>
+                                </tr>
+                            </thead>
+                            <tbody id="evaluation-resilience-body">
+                                <tr><td colspan="10" class="loading-cell">Loading evaluation results...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>MEMBERSHIP METRICS</h3>
+                    </div>
+                    <div class="panel-body table-container">
+                        <table class="data-table" id="evaluation-metrics-table">
+                            <thead>
+                                <tr><th>Signal</th><th>Scenario</th><th>Precision</th><th>Recall</th><th>F1</th><th>FPR</th></tr>
+                            </thead>
+                            <tbody id="evaluation-metrics-body">
+                                <tr><td colspan="6" class="loading-cell">Loading evaluation metrics...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="evaluation-notes" id="evaluation-notes"></div>
+        </section>
+
         <!-- Audit Log Section -->
         <section class="audit-section">
             <div class="section-header">

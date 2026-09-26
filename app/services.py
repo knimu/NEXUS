@@ -22,6 +22,7 @@ RISK_RESULTS_PATH = os.path.join("data", "generated", "risk_results.csv")
 CLUSTER_RESULTS_PATH = os.path.join("data", "generated", "cluster_results.json")
 AUDIT_LOG_PATH = os.path.join("data", "generated", "audit_log.json")
 ADVERSARIAL_DIR = os.path.join("data", "generated", "adversarial")
+EVALUATION_SUMMARY_PATH = os.path.join("data", "generated", "evaluation", "evaluation_summary.json")
 
 
 def load_synthetic_df() -> pd.DataFrame:
@@ -477,4 +478,64 @@ def get_adversarial_comparison(attack_type: str | None = None) -> dict:
         "baseline_summary": baseline_summary,
         "available_attacks": list(attack_data.keys()),
         "attack_comparisons": attack_data,
+    }
+
+
+def get_evaluation_data() -> dict:
+    """Load generated evaluation metrics and pair them with resilience summaries."""
+    if not os.path.exists(EVALUATION_SUMMARY_PATH):
+        raise ValueError(f"Evaluation summary file not found: {EVALUATION_SUMMARY_PATH}")
+
+    try:
+        with open(EVALUATION_SUMMARY_PATH, "r", encoding="utf-8") as f:
+            evaluation = json.load(f)
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"Evaluation summary could not be loaded: {exc}") from exc
+
+    if not isinstance(evaluation, dict) or not evaluation:
+        raise ValueError("Evaluation summary is empty or has an invalid format")
+
+    resilience = get_adversarial_comparison()
+    scenarios = {
+        "baseline": resilience["baseline_summary"],
+        **{name: details["summary"] for name, details in resilience["attack_comparisons"].items()},
+    }
+
+    rows = []
+    scenario_names = ["baseline", "device_rotation", "ip_rotation", "combined"]
+    labels = {
+        "baseline": "Baseline",
+        "device_rotation": "Device Rotation",
+        "ip_rotation": "IP Rotation",
+        "combined": "Combined Rotation",
+    }
+    for name in scenario_names:
+        summary = scenarios.get(name, {})
+        evaluation_name = "combined_rotation" if name == "combined" else name
+        result = evaluation.get(evaluation_name, {})
+        rows.append({
+            "name": name,
+            "label": labels[name],
+            "detected_cluster_count": summary.get("cluster_count", 0),
+            "clustered_account_count": summary.get("clustered_account_count", 0),
+            "shared_device_count": summary.get("shared_device_count", 0),
+            "shared_ip_count": summary.get("shared_ip_count", 0),
+            "shared_beneficiary_count": summary.get("shared_beneficiary_count", 0),
+            "total_evidence_count": summary.get("total_evidence_count", 0),
+            "evidence_survival_percentage": (
+                100.0 if name == "baseline" else resilience["attack_comparisons"].get(
+                    name, {}).get("comparison", {}).get("evidence_survival_percentage")
+            ),
+            "average_cluster_risk": summary.get("average_cluster_risk", 0.0),
+            "average_confidence": summary.get("average_confidence", 0.0),
+            "candidate_cluster_metrics": result.get("candidate_cluster_metrics", {}),
+            "high_severity_metrics": result.get("high_severity_metrics", {}),
+        })
+
+    return {
+        "resilience": rows,
+        "notes": {
+            "metrics": "Candidate-cluster membership is a broad network-candidate signal, not a fraud verdict. High-severity cluster membership represents the operational escalation signal.",
+            "interpretation": "Combined device and IP rotation removes infrastructure-based relationships and fragments the graph. Residual relationships such as shared beneficiaries, temporal proximity and behavioral overlap can remain.",
+        },
     }

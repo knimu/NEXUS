@@ -118,3 +118,76 @@ This generates:
 ```bash
 pytest tests/
 ```
+
+---
+
+## Evaluation & Adversarial Resilience
+
+NEXUS includes a post-detection evaluation layer. It does **not** use
+`ground_truth_cluster` or `scenario_id` during graph construction, clustering,
+evidence extraction, scoring, or adversarial mutation. Ground truth is read
+only after each detector run to measure performance.
+
+Two account-level views are reported:
+
+1. **Candidate-cluster membership** — broad network-candidate coverage. An
+   account is positive if it belongs to any connected candidate cluster.
+2. **High-severity cluster membership** — operational escalation coverage. An
+   account is positive if it belongs to a cluster classified as `HIGH`.
+
+Metrics:
+- Precision
+- Recall
+- F1
+- False-positive rate (FPR)
+
+Run:
+
+```bash
+python -m evaluation.run_evaluation
+```
+
+The results are written to:
+
+```text
+data/generated/evaluation/evaluation_summary.json
+```
+
+### Current synthetic evaluation
+
+| Detector run | Candidate precision | Candidate recall | Candidate F1 | Candidate FPR |
+|---|---:|---:|---:|---:|
+| Baseline | 60.0% | 100.0% | 75.0% | 100.0% |
+| Device rotation | 60.0% | 100.0% | 75.0% | 100.0% |
+| IP rotation | 100.0% | 100.0% | 100.0% | 0.0% |
+| Combined rotation | 100.0% | 100.0% | 100.0% | 0.0% |
+
+For the current synthetic dataset, the broad candidate graph intentionally
+contains legitimate shared-infrastructure relationships. Therefore candidate
+membership should **not** be interpreted as a fraud verdict. The baseline
+candidate result includes all 20 legitimate accounts as candidate members,
+which is why its candidate FPR is 100%.
+
+The high-severity layer separates those candidates from operational escalation.
+For the current synthetic scenarios, high-severity membership identifies all
+30 fraud accounts with no legitimate accounts in the high-severity clusters
+across baseline and the tested adversarial variants.
+
+This evaluation therefore demonstrates the layered design:
+
+**broad candidate detection → evidence/scoring → high-severity escalation → human analyst decision**
+
+Adversarial evaluation uses the same detector pipeline after controlled
+device/IP mutations. The mutation logic does not use ground truth to choose
+what to change.
+
+### Test the evaluation module
+
+```bash
+pytest -q tests/test_evaluation.py
+```
+
+The evaluation module is intentionally lightweight and does not add a machine
+learning model. Precision, recall, F1 and FPR are used to quantitatively
+evaluate the existing graph/evidence-based security detector.
+

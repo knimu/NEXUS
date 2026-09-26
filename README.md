@@ -26,8 +26,6 @@ https://nexus-1-epu2.onrender.com/
 
 https://youtu.be/hlY9bTJmhkU
 
-> **Note:** The submitted presentation video must comply with the AI Defense Lab requirement of being no longer than 7 minutes. The current development/demo recording is 10:30 and should be replaced by a shortened submission version before final submission.
-
 ---
 
 # Problem

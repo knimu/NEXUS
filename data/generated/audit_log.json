@@ -34,5 +34,29 @@
     "cluster_id": "CLUSTER_006",
     "decision": "ESCALATE",
     "reason": "Multiple independent relationship and behavioral signals require review."
+  },
+  {
+    "timestamp": "2026-09-26T03:31:57.474219+00:00",
+    "cluster_id": "CLUSTER_006",
+    "decision": "REVIEW",
+    "reason": "Multiple independent signals require analyst review."
+  },
+  {
+    "timestamp": "2026-09-26T03:32:35.775896+00:00",
+    "cluster_id": "CLUSTER_001",
+    "decision": "REVIEW",
+    "reason": "Initial review required for IP sharing."
+  },
+  {
+    "timestamp": "2026-09-26T03:32:35.795829+00:00",
+    "cluster_id": "CLUSTER_001",
+    "decision": "ALLOW",
+    "reason": "Legitimate shared office network verified."
+  },
+  {
+    "timestamp": "2026-09-26T03:32:35.815504+00:00",
+    "cluster_id": "CLUSTER_006",
+    "decision": "ESCALATE",
+    "reason": "Multiple independent relationship and behavioral signals require review."
   }
 ]

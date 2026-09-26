@@ -1,8 +1,10 @@
 __pycache__/
 *.pyc
-<<<<<<< HEAD
+.pytest_cache/
+
 .venv/
 venv/
 .env
 *.log
+
 data/generated/adversarial/

@@ -133,7 +133,7 @@ Synthetic Transaction Signals
 
 The adversarial experiment reuses the same detection and evidence pipeline after mutation. This allows the experiment to measure the effect of the infrastructure change rather than comparing different detection systems.
 
- Core Components
+Core Components
 1. Synthetic Data
 
 NEXUS operates on controlled synthetic transaction data.

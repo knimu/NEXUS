@@ -169,6 +169,27 @@ def test_12_decision_valid_escalate(client):
     assert data["success"] is True
 
 
+def test_12b_repeated_decision_is_idempotent(client, monkeypatch, tmp_path):
+    """Repeated identical submissions create only one audit entry."""
+    audit_path = tmp_path / "audit_log.json"
+    monkeypatch.setattr("app.services.AUDIT_LOG_PATH", str(audit_path))
+    payload = {
+        "cluster_id": "CLUSTER_006",
+        "decision": "ESCALATE",
+        "reason": "Repeated submission protection test.",
+        "submission_id": "test-submission-1",
+    }
+
+    first = client.post("/api/decisions", json=payload)
+    second = client.post("/api/decisions", json=payload)
+
+    assert first.status_code == 200
+    assert second.status_code == 200
+    assert second.get_json()["duplicate"] is True
+    with open(audit_path, "r", encoding="utf-8") as f:
+        assert len(json.load(f)) == 1
+
+
 def test_13_decision_invalid_decision_rejected(client):
     """Test 13: Invalid decision value rejected with 400."""
     payload = {

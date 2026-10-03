@@ -217,7 +217,7 @@ function renderClusterDetail(data) {
         <!-- Human Analyst Decision Form -->
         <div class="decision-panel">
             <div class="decision-form-header">ANALYST DECISION SUBMISSION</div>
-            <form onsubmit="submitAnalystDecision(event)">
+            <form data-submission-id="${createSubmissionId()}" onsubmit="submitAnalystDecision(event)">
                 <div class="decision-options">
                     <label class="decision-radio-label">
                         <input type="radio" name="decision" value="REVIEW" checked> REVIEW
@@ -430,6 +430,8 @@ function closeAccountModal() {
 // 6. Submit Human Analyst Decision
 async function submitAnalystDecision(event) {
     event.preventDefault();
+    const form = event.currentTarget;
+    const submitButton = form.querySelector('button[type="submit"]');
     const feedback = document.getElementById('decision-feedback');
     feedback.innerHTML = '';
 
@@ -447,6 +449,8 @@ async function submitAnalystDecision(event) {
         return;
     }
 
+    submitButton.disabled = true;
+
     try {
         const response = await fetch('/api/decisions', {
             method: 'POST',
@@ -454,7 +458,8 @@ async function submitAnalystDecision(event) {
             body: JSON.stringify({
                 cluster_id: currentClusterId,
                 decision: decision,
-                reason: reason
+                reason: reason,
+                submission_id: form.dataset.submissionId
             })
         });
 
@@ -469,8 +474,16 @@ async function submitAnalystDecision(event) {
         // Refresh audit log UI
         fetchAuditLog();
     } catch (err) {
+        submitButton.disabled = false;
         feedback.innerHTML = `<span style="color: #f87171;">Error: ${err.message}</span>`;
     }
+}
+
+function createSubmissionId() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+        return window.crypto.randomUUID();
+    }
+    return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
 // 7. Fetch Audit Log

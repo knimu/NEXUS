@@ -115,9 +115,12 @@ def api_decisions():
     cluster_id = data.get("cluster_id")
     decision = data.get("decision")
     reason = data.get("reason")
+    submission_id = data.get("submission_id")
 
     try:
-        record_decision(cluster_id, decision, reason)
+        recorded = record_decision(cluster_id, decision, reason, submission_id)
+        if not recorded:
+            return jsonify({"success": True, "duplicate": True, "message": "Decision already recorded"}), 200
         return jsonify({"success": True, "message": "Decision recorded"}), 200
     except ValueError as ve:
         return jsonify({"error": str(ve)}), 400

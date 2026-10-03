@@ -8,6 +8,7 @@ Note: ground_truth_cluster and scenario_id are intentionally excluded from runti
 
 import json
 import os
+import threading
 from datetime import datetime, timezone
 import pandas as pd
 
@@ -23,6 +24,7 @@ CLUSTER_RESULTS_PATH = os.path.join("data", "generated", "cluster_results.json")
 AUDIT_LOG_PATH = os.path.join("data", "generated", "audit_log.json")
 ADVERSARIAL_DIR = os.path.join("data", "generated", "adversarial")
 EVALUATION_SUMMARY_PATH = os.path.join("data", "generated", "evaluation", "evaluation_summary.json")
+AUDIT_LOG_LOCK = threading.Lock()
 
 
 def load_synthetic_df() -> pd.DataFrame:
@@ -224,7 +226,7 @@ def get_audit_log() -> list[dict]:
     return []
 
 
-def record_decision(cluster_id: str, decision: str, reason: str) -> bool:
+def record_decision(cluster_id: str, decision: str, reason: str, submission_id: str | None = None) -> bool:
     """
     Validate and record a human analyst decision to audit_log.json.
 
@@ -232,6 +234,7 @@ def record_decision(cluster_id: str, decision: str, reason: str) -> bool:
         cluster_id (str): Existing candidate cluster ID.
         decision (str): Must be 'REVIEW', 'ALLOW', or 'ESCALATE'.
         reason (str): Mandatory non-empty reason string.
+        submission_id (str | None): Optional client-generated idempotency key.
 
     Returns:
         bool: True if recorded successfully.
@@ -252,27 +255,44 @@ def record_decision(cluster_id: str, decision: str, reason: str) -> bool:
         raise ValueError(f"Cluster ID '{cluster_id}' does not exist.")
 
     # 4. Construct audit entry
+    normalized_decision = str(decision).upper()
+    normalized_reason = reason.strip()
     entry = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "cluster_id": cluster_id,
-        "decision": str(decision).upper(),
-        "reason": reason.strip(),
+        "decision": normalized_decision,
+        "reason": normalized_reason,
     }
+    if submission_id:
+        entry["submission_id"] = str(submission_id)
 
-    # 5. Persist atomically to audit_log.json
-    logs = []
-    if os.path.exists(AUDIT_LOG_PATH):
-        try:
-            with open(AUDIT_LOG_PATH, "r", encoding="utf-8") as f:
-                logs = json.load(f)
-        except Exception:
-            logs = []
+    # 5. Serialize read/check/write so repeated requests cannot append the same decision.
+    with AUDIT_LOG_LOCK:
+        logs = []
+        if os.path.exists(AUDIT_LOG_PATH):
+            try:
+                with open(AUDIT_LOG_PATH, "r", encoding="utf-8") as f:
+                    logs = json.load(f)
+            except Exception:
+                logs = []
 
-    logs.append(entry)
+        duplicate = any(
+            (submission_id and log.get("submission_id") == str(submission_id))
+            or (
+                log.get("cluster_id") == cluster_id
+                and log.get("decision") == normalized_decision
+                and str(log.get("reason", "")).strip() == normalized_reason
+            )
+            for log in logs
+        )
+        if duplicate:
+            return False
 
-    os.makedirs(os.path.dirname(AUDIT_LOG_PATH), exist_ok=True)
-    with open(AUDIT_LOG_PATH, "w", encoding="utf-8") as f:
-        json.dump(logs, f, indent=2)
+        logs.append(entry)
+
+        os.makedirs(os.path.dirname(AUDIT_LOG_PATH), exist_ok=True)
+        with open(AUDIT_LOG_PATH, "w", encoding="utf-8") as f:
+            json.dump(logs, f, indent=2)
 
     return True
 
